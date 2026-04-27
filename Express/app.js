@@ -5,6 +5,8 @@ const bookRouter = require('./routes/bookRouter');
 const indexRouter = require('./routes/indexRouter');
 const { middleWareTest } = require('./controllers/itemController');
 const path = require('node:path');
+const assetsPath = path.join(__dirname, 'public');
+app.use(express.static(assetsPath));
 app.use(express.json())
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -13,11 +15,18 @@ require('dotenv').config()
 const links = [
     { href: '/', text: "Home"},
     { href: 'authors', text: 'authors'},
+    { href : 'About', text: 'About Page'},
 ];
 
+const users = ['Rose', 'Cake', 'Biff'];
+
 app.get('/', (req, res) => {
-    res.render('index', { links: links});
+    res.render('index', { links: links, users: users, });
 });
+
+app.get('/about', (req, res) => {
+    res.render('about', { links: links})
+})
 
 app.use(middleWareTest);
 app.use('/authors', authorRouter);
