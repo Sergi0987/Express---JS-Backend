@@ -1,0 +1,9 @@
+<body>
+    <a href="/new">New form</a>
+    <% usernames.forEach((username, index) => { %>
+        <p><%= username.username %></p>
+        <!-- <form method="post" action="/delete/<%= index %>">
+            <button>Remove</button>
+        </form> -->
+    <% }); %>
+</body>
